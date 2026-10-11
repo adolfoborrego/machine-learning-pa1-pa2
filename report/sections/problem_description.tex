@@ -1,0 +1,23 @@
+\section{Problem Description}
+The IBM HR Analytics Employee Attrition \& Performance dataset contains 1,470 employee observations and 35 original columns, including the binary target \texttt{Attrition}. Its distribution is summarised in Table~\ref{tab:dataset}. The dataset is distributed through Kaggle~\cite{ibmhr}. Predictors cover demographics (age and marital status), professional attributes (department and job role), compensation (monthly income and stock options), satisfaction and involvement, experience (working years and company tenure), and working conditions (overtime and business travel).
+
+\begin{table}[htbp]
+\centering
+\caption{Dataset characteristics and target distribution.}
+\label{tab:dataset}
+\begin{tabular}{lr}
+\toprule
+Characteristic & Value \\
+\midrule
+Observations & 1,470 \\
+Original columns, including target & 35 \\
+Valid original predictors after removal & 30 \\
+Numerical / categorical predictors & 23 / 7 \\
+Missing values & 0 \\
+\texttt{No}: employee remains & 1,233 (83.88\%) \\
+\texttt{Yes}: employee leaves & 237 (16.12\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The minority class is \texttt{Yes}, so accuracy alone does not adequately describe attrition detection. The identifier \texttt{EmployeeNumber} and the constant columns \texttt{EmployeeCount}, \texttt{Over18} and \texttt{StandardHours} are removed during preprocessing. With 30 valid predictors and 1,470 observations, the dataset exceeds the assignment's minimum of 15 variables and 100 observations.

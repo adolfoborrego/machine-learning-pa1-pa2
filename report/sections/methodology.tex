@@ -1,0 +1,24 @@
+\section{Methodology}
+\subsection{Data Preprocessing}
+The four non-predictive columns identified above are removed, leaving 30 original predictors. No imputation is needed because there are no missing values. The target is encoded as \texttt{No}=0 and \texttt{Yes}=1. The 23 numerical predictors are standardised using \texttt{StandardScaler}; the seven categorical predictors are encoded using \texttt{OneHotEncoder} with \texttt{handle\_unknown="ignore"}. Integer variables representing ordinal levels retain their ordered numerical representation. The complete encoded representation contains 51 transformed features.
+
+A scikit-learn \texttt{Pipeline}~\cite{sklearn} combines preprocessing, optional selection and classification. Fitted preprocessing from structural inspection is not reused for evaluation. Transformations and selectors are fitted on each outer training fold, and then applied to its held-out fold.
+
+\subsection{Classification Algorithms}
+Four classifiers are used: K-NN classifies from neighbouring observations; Decision Tree uses successive feature splits; SVM constructs a separating decision boundary; and the Neural Network learns a multilayer representation for classification. The implementations are \texttt{KNeighborsClassifier()}, \texttt{DecisionTreeClassifier} (random seed 42), \texttt{SVC()} and \texttt{MLPClassifier} (random seed 42; maximum 2,000 iterations). Other parameters remain at their defaults. These default or minimal configurations are kept consistent across representations to isolate the effect of selection. Hyperparameters are not tuned, and no resampling or class weighting is applied.
+
+\subsection{Evaluation Methodology}
+Every configuration is evaluated using \texttt{StratifiedKFold} with ten shuffled folds and random seed 42. Stratification approximately preserves class proportions. Each outer held-out fold is excluded from fitting preprocessing, selecting features and training the classifier, providing an honest estimate for each fixed configuration. Reported scores are arithmetic means of the ten held-out-fold scores.
+
+Accuracy, precision, recall, F1-score and balanced accuracy are recorded. Precision, recall and F1 refer to the positive class, \texttt{Attrition=Yes}. Recall measures the proportion of employees leaving that are detected; F1 balances precision and recall through their harmonic mean. Balanced accuracy averages sensitivity and specificity, giving both classes equal importance. F1 and balanced accuracy therefore guide the comparison, with recall providing additional information about minority-class detection.
+
+\subsection{Feature Selection Strategies}
+\paragraph{All Features.} The baseline pipeline applies preprocessing directly followed by the classifier, retaining all valid original predictors and their 51 transformed features.
+
+\paragraph{Univariate Filter.} After preprocessing, \texttt{SelectKBest} with \texttt{f\_classif} and $k=15$ retains the 15 transformed features with the highest individual ANOVA F-scores. It assesses association with the target separately for each feature~\cite{selectiondocs}.
+
+\paragraph{Multivariate Filter.} The existing custom greedy selector retains 15 transformed features. It first selects the feature with the greatest estimated mutual information with the target. Subsequently it maximises target mutual information minus the mean absolute Pearson correlation with already selected features. Mutual information is computed using \texttt{mutual\_info\_classif} with random seed 42. This is an mRMR-inspired relevance--redundancy implementation~\cite{mrmr}, rather than a canonical library implementation of mRMR: redundancy is measured by correlation rather than mutual information.
+
+\paragraph{Wrapper.} \texttt{SequentialFeatureSelector} performs forward selection of 15 transformed features using a \texttt{DecisionTreeClassifier} with random seed 42, F1 scoring and internal five-fold CV~\cite{selectiondocs}. The same tree-based selection procedure precedes each of the four final classifiers. Selection is nested within the outer ten-fold evaluation: inner CV chooses the subset, while outer held-out folds estimate predictive performance. In the existing implementation, preprocessing is fitted on the outer training fold before the selector's inner CV; it is not refitted within each inner split. The outer test fold remains excluded throughout.
+
+For interpretation only, separate selector pipelines are fitted to the full dataset to export selected-feature lists. These fits do not generate the reported predictive scores. Their overlap describes agreement across the three strategies in these descriptive fits, rather than selection frequency across CV folds. One-hot categories are mapped back to their original variables.

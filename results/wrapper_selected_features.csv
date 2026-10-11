@@ -1,0 +1,52 @@
+Feature,Selected
+num__Age,True
+num__RelationshipSatisfaction,True
+cat__OverTime_No,True
+cat__MaritalStatus_Single,True
+cat__MaritalStatus_Married,True
+cat__JobRole_Sales Executive,True
+cat__JobRole_Manager,True
+num__DailyRate,True
+cat__BusinessTravel_Travel_Frequently,True
+num__TotalWorkingYears,True
+num__StockOptionLevel,True
+cat__OverTime_Yes,True
+num__NumCompaniesWorked,True
+num__MonthlyIncome,True
+num__JobInvolvement,True
+num__PercentSalaryHike,False
+cat__JobRole_Research Director,False
+cat__Gender_Female,False
+cat__Gender_Male,False
+cat__JobRole_Healthcare Representative,False
+cat__JobRole_Human Resources,False
+cat__JobRole_Laboratory Technician,False
+cat__JobRole_Manufacturing Director,False
+cat__JobRole_Research Scientist,False
+cat__EducationField_Other,False
+num__HourlyRate,False
+cat__JobRole_Sales Representative,False
+cat__MaritalStatus_Divorced,False
+num__EnvironmentSatisfaction,False
+num__Education,False
+num__DistanceFromHome,False
+cat__EducationField_Technical Degree,False
+cat__EducationField_Marketing,False
+cat__EducationField_Medical,False
+num__PerformanceRating,False
+num__MonthlyRate,False
+num__TrainingTimesLastYear,False
+num__WorkLifeBalance,False
+num__YearsAtCompany,False
+num__YearsInCurrentRole,False
+num__YearsSinceLastPromotion,False
+num__YearsWithCurrManager,False
+cat__BusinessTravel_Non-Travel,False
+num__JobSatisfaction,False
+num__JobLevel,False
+cat__Department_Human Resources,False
+cat__Department_Research & Development,False
+cat__Department_Sales,False
+cat__EducationField_Human Resources,False
+cat__EducationField_Life Sciences,False
+cat__BusinessTravel_Travel_Rarely,False

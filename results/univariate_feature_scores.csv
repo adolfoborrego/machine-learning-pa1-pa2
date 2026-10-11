@@ -1,0 +1,52 @@
+Feature,F_score,Selected
+cat__OverTime_No,94.6564570717517,True
+cat__OverTime_Yes,94.65645707175155,True
+cat__MaritalStatus_Single,46.60698472381,True
+num__TotalWorkingYears,44.252491442864205,True
+num__JobLevel,43.21534382767795,True
+num__YearsInCurrentRole,38.8383027847877,True
+num__MonthlyIncome,38.488818983801764,True
+num__Age,38.17588678973346,True
+cat__JobRole_Sales Representative,37.212797538044896,True
+num__YearsWithCurrManager,36.71231147388483,True
+num__StockOptionLevel,28.140500912238934,True
+num__YearsAtCompany,27.001623763003643,True
+num__JobInvolvement,25.241985036473526,True
+cat__BusinessTravel_Travel_Frequently,19.72403165991587,True
+num__JobSatisfaction,15.890003806510475,True
+num__EnvironmentSatisfaction,15.855209080957538,False
+cat__JobRole_Laboratory Technician,14.32072952041378,False
+cat__MaritalStatus_Married,12.25357579145964,False
+cat__JobRole_Research Director,11.686338935843532,False
+cat__MaritalStatus_Divorced,11.382602504071908,False
+cat__Department_Research & Development,10.757790643695412,False
+cat__JobRole_Manager,10.2615296073428,False
+cat__JobRole_Manufacturing Director,10.181702908147987,False
+cat__Department_Sales,9.660298345811443,False
+cat__JobRole_Healthcare Representative,9.148078837923782,False
+num__DistanceFromHome,8.968276593814743,False
+cat__BusinessTravel_Non-Travel,8.183799743762972,False
+cat__EducationField_Technical Degree,7.095296609505695,False
+num__WorkLifeBalance,6.026116161004646,False
+num__TrainingTimesLastYear,5.211646072556787,False
+num__DailyRate,4.72663983764927,False
+cat__EducationField_Marketing,4.581913100356788,False
+cat__BusinessTravel_Travel_Rarely,3.611330422919579,False
+cat__EducationField_Medical,3.24981324906318,False
+num__RelationshipSatisfaction,3.095576359580014,False
+num__NumCompaniesWorked,2.782286701655655,False
+cat__EducationField_Human Resources,1.9547215517565504,False
+cat__JobRole_Human Resources,1.9278576719257625,False
+num__YearsSinceLastPromotion,1.6022184053056934,False
+cat__EducationField_Life Sciences,1.5717008661936145,False
+num__Education,1.4463081305522876,False
+cat__Gender_Male,1.2745870687662706,False
+cat__Gender_Female,1.2745870687662706,False
+cat__JobRole_Sales Executive,0.5742501977646886,False
+cat__EducationField_Other,0.47038206094761614,False
+cat__Department_Human Resources,0.4160265586826092,False
+num__MonthlyRate,0.3379164577081433,False
+num__PercentSalaryHike,0.2667281686233816,False
+num__HourlyRate,0.06879597773678547,False
+num__PerformanceRating,0.01225039553422366,False
+cat__JobRole_Research Scientist,0.00018980001830989462,False

@@ -1,0 +1,30 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx,booktabs,amsmath}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage[font=small,labelfont=bf]{caption}
+\setlength{\emergencystretch}{2em}
+\graphicspath{{../figures/}}
+\title{Employee Attrition Prediction Using Non-Probabilistic Classification and Feature Selection}
+\author{Adolfo Borrego Gonz\'alez}
+\date{Practical Application 1 --- Machine Learning}
+\begin{document}
+\maketitle
+\begin{abstract}
+Employee attrition is studied as a binary supervised classification problem using 1,470 observations from the IBM HR Analytics Employee Attrition \& Performance dataset. K-NN, Decision Tree, Support Vector Machine and Neural Network classifiers are compared using all valid predictors, a univariate filter, an mRMR-inspired multivariate filter and a forward-selection wrapper. Predictive performance is estimated through stratified 10-fold cross-validation, with preprocessing and selection fitted within each outer training fold; the wrapper uses internal five-fold selection. The complete representation with the Neural Network obtains the highest mean F1-score (0.4738) and balanced accuracy (0.6765). Reducing 51 transformed features to 15 benefits some classifiers, particularly K-NN under univariate and wrapper selection, but does not improve the strongest full-feature configuration. Repeated selection of original variables supports contextual interpretation of the reduced representations.
+\end{abstract}
+\input{sections/introduction}
+\input{sections/problem_description}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+\begingroup
+\small
+\raggedright
+\bibliographystyle{plain}
+\bibliography{references}
+\endgroup
+\end{document}

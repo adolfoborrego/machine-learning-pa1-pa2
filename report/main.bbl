@@ -1,0 +1,31 @@
+\begin{thebibliography}{1}
+
+\bibitem{ibmhr}
+{IBM HR Analytics Employee Attrition \& Performance}.
+\newblock Kaggle dataset page,
+  \url{https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset}.
+\newblock Accessed 9 October 2026.
+
+\bibitem{sklearn}
+Fabian Pedregosa, Ga\"el Varoquaux, Alexandre Gramfort, Vincent Michel,
+  Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron
+  Weiss, Vincent Dubourg, Jake Vanderplas, Alexandre Passos, David Cournapeau,
+  Matthieu Brucher, Matthieu Perrot, and \'Edouard Duchesnay.
+\newblock Scikit-learn: Machine learning in python.
+\newblock {\em Journal of Machine Learning Research}, 12:2825--2830, 2011.
+
+\bibitem{mrmr}
+Hanchuan Peng, Fuhui Long, and Chris Ding.
+\newblock Feature selection based on mutual information: Criteria of
+  max-dependency, max-relevance, and min-redundancy.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  27(8):1226--1238, 2005.
+
+\bibitem{selectiondocs}
+{scikit-learn developers}.
+\newblock Feature selection.
+\newblock scikit-learn documentation,
+  \url{https://scikit-learn.org/stable/modules/feature_selection.html}.
+\newblock Accessed 9 October 2026.
+
+\end{thebibliography}

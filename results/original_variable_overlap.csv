@@ -1,0 +1,24 @@
+Original Variable,Univariate,Multivariate,Wrapper,Selection Count
+BusinessTravel,True,True,True,3
+JobInvolvement,True,True,True,3
+JobRole,True,True,True,3
+MaritalStatus,True,True,True,3
+MonthlyIncome,True,True,True,3
+OverTime,True,True,True,3
+StockOptionLevel,True,True,True,3
+Age,True,False,True,2
+JobSatisfaction,True,True,False,2
+NumCompaniesWorked,False,True,True,2
+TotalWorkingYears,True,False,True,2
+DailyRate,False,False,True,1
+Department,False,True,False,1
+EducationField,False,True,False,1
+JobLevel,True,False,False,1
+MonthlyRate,False,True,False,1
+PerformanceRating,False,True,False,1
+RelationshipSatisfaction,False,False,True,1
+TrainingTimesLastYear,False,True,False,1
+WorkLifeBalance,False,True,False,1
+YearsAtCompany,True,False,False,1
+YearsInCurrentRole,True,False,False,1
+YearsWithCurrManager,True,False,False,1

@@ -1,0 +1,52 @@
+Feature,MutualInformation,Selected
+cat__OverTime_Yes,0.03832248218467793,True
+num__MonthlyIncome,0.03260400529001095,True
+num__StockOptionLevel,0.026745265449945155,True
+cat__OverTime_No,0.02389636593832911,False
+num__JobSatisfaction,0.0232373059963058,True
+num__YearsInCurrentRole,0.022565345156418726,False
+num__NumCompaniesWorked,0.02058671596318229,True
+cat__MaritalStatus_Married,0.019829814589256145,True
+num__JobLevel,0.019720997750294345,False
+num__TotalWorkingYears,0.01965793162731644,False
+cat__Department_Human Resources,0.019145665388140998,True
+cat__MaritalStatus_Single,0.015110841098923133,False
+num__JobInvolvement,0.014653798094413029,True
+num__YearsWithCurrManager,0.014371601774120224,False
+num__Age,0.01400264557211317,False
+num__YearsAtCompany,0.013647473134138055,False
+cat__EducationField_Human Resources,0.012405976629547455,False
+cat__JobRole_Sales Representative,0.01198660967813514,False
+num__TrainingTimesLastYear,0.011871850087363356,True
+num__YearsSinceLastPromotion,0.011161422824801148,False
+cat__JobRole_Manufacturing Director,0.007956536817935511,True
+cat__BusinessTravel_Travel_Frequently,0.006777130112164853,True
+cat__Department_Sales,0.006193266248942342,False
+cat__JobRole_Research Scientist,0.006182300522037165,False
+num__PerformanceRating,0.006173114254763634,True
+num__RelationshipSatisfaction,0.005667298435081625,False
+cat__EducationField_Technical Degree,0.0056028190892856156,True
+num__WorkLifeBalance,0.005379340670757182,True
+num__EnvironmentSatisfaction,0.00378695582740729,False
+num__PercentSalaryHike,0.002916758972252298,False
+cat__JobRole_Laboratory Technician,0.0028144124660280934,False
+num__MonthlyRate,0.0026499379329174566,True
+cat__MaritalStatus_Divorced,0.0023129047258345636,False
+num__DailyRate,0.0014037453998498872,False
+cat__JobRole_Manager,0.0007879235226988524,False
+num__HourlyRate,0.0,False
+num__Education,0.0,False
+num__DistanceFromHome,0.0,False
+cat__EducationField_Marketing,0.0,False
+cat__Department_Research & Development,0.0,False
+cat__BusinessTravel_Travel_Rarely,0.0,False
+cat__BusinessTravel_Non-Travel,0.0,False
+cat__EducationField_Life Sciences,0.0,False
+cat__EducationField_Other,0.0,False
+cat__EducationField_Medical,0.0,False
+cat__JobRole_Research Director,0.0,False
+cat__JobRole_Human Resources,0.0,False
+cat__Gender_Female,0.0,False
+cat__Gender_Male,0.0,False
+cat__JobRole_Healthcare Representative,0.0,False
+cat__JobRole_Sales Executive,0.0,False

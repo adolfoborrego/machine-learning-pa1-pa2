@@ -1,0 +1,29 @@
+Feature,Univariate,Multivariate,Wrapper,Selection Count,Original Variable
+cat__BusinessTravel_Travel_Frequently,True,True,True,3,BusinessTravel
+cat__OverTime_Yes,True,True,True,3,OverTime
+num__JobInvolvement,True,True,True,3,JobInvolvement
+num__MonthlyIncome,True,True,True,3,MonthlyIncome
+num__StockOptionLevel,True,True,True,3,StockOptionLevel
+cat__MaritalStatus_Married,False,True,True,2,MaritalStatus
+cat__MaritalStatus_Single,True,False,True,2,MaritalStatus
+cat__OverTime_No,True,False,True,2,OverTime
+num__Age,True,False,True,2,Age
+num__JobSatisfaction,True,True,False,2,JobSatisfaction
+num__NumCompaniesWorked,False,True,True,2,NumCompaniesWorked
+num__TotalWorkingYears,True,False,True,2,TotalWorkingYears
+cat__Department_Human Resources,False,True,False,1,Department
+cat__EducationField_Technical Degree,False,True,False,1,EducationField
+cat__JobRole_Manager,False,False,True,1,JobRole
+cat__JobRole_Manufacturing Director,False,True,False,1,JobRole
+cat__JobRole_Sales Executive,False,False,True,1,JobRole
+cat__JobRole_Sales Representative,True,False,False,1,JobRole
+num__DailyRate,False,False,True,1,DailyRate
+num__JobLevel,True,False,False,1,JobLevel
+num__MonthlyRate,False,True,False,1,MonthlyRate
+num__PerformanceRating,False,True,False,1,PerformanceRating
+num__RelationshipSatisfaction,False,False,True,1,RelationshipSatisfaction
+num__TrainingTimesLastYear,False,True,False,1,TrainingTimesLastYear
+num__WorkLifeBalance,False,True,False,1,WorkLifeBalance
+num__YearsAtCompany,True,False,False,1,YearsAtCompany
+num__YearsInCurrentRole,True,False,False,1,YearsInCurrentRole
+num__YearsWithCurrManager,True,False,False,1,YearsWithCurrManager
