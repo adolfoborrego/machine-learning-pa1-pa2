@@ -1,42 +1,83 @@
 \section{Results}
+
 \subsection{Original Feature Set}
-With all features, the Neural Network achieves the highest mean F1 (0.4738) and balanced accuracy (0.6765), with recall 0.4219. SVM obtains the highest accuracy (0.8653) and precision (0.8363), but recall is 0.2241. Decision Tree obtains F1 0.3620 and balanced accuracy 0.6206; K-NN obtains F1 0.2115 and balanced accuracy 0.5577.
+
+With all features, the Neural Network achieves the highest mean F1 (0.4738)
+and balanced accuracy (0.6765), with recall 0.4219. SVM obtains the highest
+accuracy (0.8653) and precision (0.8363), but recall is 0.2241. Decision Tree
+obtains F1 0.3620 and balanced accuracy 0.6206; K-NN obtains F1 0.2115 and
+balanced accuracy 0.5577.
 
 \subsection{Univariate Filter}
-Decision Tree is the highest-F1 classifier under univariate selection, with F1 0.3809 and balanced accuracy 0.6347. Its F1 and balanced accuracy improve relative to the baseline, as do those of K-NN (F1 0.2968). SVM and Neural Network obtain lower F1 and balanced accuracy than with all features.
+
+Decision Tree is the highest-F1 classifier under univariate selection, with F1
+0.3809 and balanced accuracy 0.6347. Its F1 and balanced accuracy improve
+relative to the baseline, as do those of K-NN (F1 0.2968). SVM and Neural
+Network obtain lower F1 and balanced accuracy than with all features.
 
 \subsection{Multivariate Filter}
-The Neural Network has the highest F1 within this strategy, at 0.3902, with balanced accuracy 0.6341. Decision Tree obtains F1 0.3748. Both K-NN and SVM score below their baselines; SVM recall falls to 0.0511 and F1 to 0.0910.
+
+The Neural Network has the highest F1 within this strategy, at 0.3902, with
+balanced accuracy 0.6341. Decision Tree obtains F1 0.3748. Both K-NN and SVM
+score below their baselines; SVM recall falls to 0.0511 and F1 to 0.0910.
 
 \subsection{Wrapper}
-The Neural Network again has the highest F1 within the strategy (0.3919), with balanced accuracy 0.6286. K-NN improves from baseline F1 0.2115 to 0.3146 and from recall 0.1350 to 0.2364. Neither the wrapper Neural Network nor the other reduced configurations exceed the full-feature Neural Network in F1 or balanced accuracy.
+
+The Neural Network again has the highest F1 within the strategy (0.3919), with
+balanced accuracy 0.6286. K-NN improves from baseline F1 0.2115 to 0.3146 and
+from recall 0.1350 to 0.2364. Neither the wrapper Neural Network nor the other
+reduced configurations exceed the full-feature Neural Network in F1 or
+balanced accuracy.
 
 \subsection{Overall Comparison}
-Table~\ref{tab:best} lists the highest-F1 configuration within each strategy. Figure~\ref{fig:f1} shows all 16 F1 comparisons. Among reduced configurations, Wrapper with Neural Network has the highest F1, whereas Univariate with Decision Tree has the highest balanced accuracy (0.6347). Every selection strategy retains 15 of the 51 transformed features, a 70.59\% dimensionality reduction.
+
+Table~\ref{tab:best} lists the highest-F1 configuration within each strategy.
+Figure~\ref{fig:f1} shows all 16 F1 comparisons. Among reduced configurations,
+Wrapper with Neural Network has the highest F1, whereas Univariate with
+Decision Tree has the highest balanced accuracy (0.6347). Every selection
+strategy retains 15 of the 51 transformed features, a 70.59\% dimensionality
+reduction.
 
 \begin{table}[htbp]
-\centering
-\caption{Highest mean F1 configuration per strategy. BA denotes balanced accuracy; all metrics are ten-fold means.}
-\label{tab:best}
-\small
-\setlength{\tabcolsep}{4pt}
-\input{tables/best_per_experiment}
+    \centering
+    \caption{Highest mean F1 configuration per strategy. BA denotes balanced
+    accuracy; all metrics are ten-fold means.}
+    \label{tab:best}
+    \small
+    \setlength{\tabcolsep}{4pt}
+
+    \resizebox{\textwidth}{!}{
+        \input{tables/best_per_experiment}
+    }
 \end{table}
 
 \begin{figure}[htbp]
-\centering
-\includegraphics[width=0.88\linewidth]{f1_comparison.pdf}
-\caption{Mean F1-score by classifier and feature-selection strategy.}
-\label{fig:f1}
+    \centering
+
+    \includegraphics[
+        width=0.88\linewidth
+    ]{f1_comparison.pdf}
+
+    \caption{Mean F1-score by classifier and feature-selection strategy.}
+    \label{fig:f1}
 \end{figure}
 
 \subsection{Selected Variables}
-Table~\ref{tab:variables} reports original variables retained by at least two strategies in the separate full-data interpretation fits. Seven original variables appear in all three strategies. A categorical variable is counted as selected when at least one of its dummy features is retained, even when strategies choose different categories of that variable.
+
+Table~\ref{tab:variables} reports original variables retained by at least two
+strategies in the separate full-data interpretation fits. Seven original
+variables appear in all three strategies. A categorical variable is counted
+as selected when at least one of its dummy features is retained, even when
+strategies choose different categories of that variable.
 
 \begin{table}[htbp]
-\centering
-\caption{Agreement between descriptive full-data selections at original-variable level. U: univariate; M: multivariate; W: wrapper.}
-\label{tab:variables}
-\small
-\input{tables/selected_variables}
+    \centering
+    \caption{Agreement between descriptive full-data selections at
+    original-variable level. U: univariate; M: multivariate; W: wrapper.}
+    \label{tab:variables}
+    \small
+
+    \resizebox{\textwidth}{!}{
+        \input{tables/selected_variables}
+    }
 \end{table}
