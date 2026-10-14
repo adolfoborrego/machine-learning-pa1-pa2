@@ -1,0 +1,5 @@
+Metric,Strategy,Model,Value
+F1,Metaclassifier,Stacking,0.5394350607508502
+Recall,All Features,Mixed Naive Bayes,0.6452898550724638
+AUC,All Features,Logistic Regression,0.8374846539489237
+Brier,Metaclassifier,Stacking,0.1845533313176082
