@@ -1,0 +1,121 @@
+Model,Feature,SelectedFolds
+Mixed Naive Bayes,Age,10
+Mixed Naive Bayes,BusinessTravel,8
+Mixed Naive Bayes,DailyRate,3
+Mixed Naive Bayes,Department,1
+Mixed Naive Bayes,DistanceFromHome,2
+Mixed Naive Bayes,Education,4
+Mixed Naive Bayes,EducationField,2
+Mixed Naive Bayes,EnvironmentSatisfaction,7
+Mixed Naive Bayes,Gender,2
+Mixed Naive Bayes,HourlyRate,6
+Mixed Naive Bayes,JobInvolvement,7
+Mixed Naive Bayes,JobLevel,10
+Mixed Naive Bayes,JobRole,10
+Mixed Naive Bayes,JobSatisfaction,3
+Mixed Naive Bayes,MaritalStatus,3
+Mixed Naive Bayes,MonthlyIncome,4
+Mixed Naive Bayes,MonthlyRate,4
+Mixed Naive Bayes,NumCompaniesWorked,5
+Mixed Naive Bayes,OverTime,10
+Mixed Naive Bayes,PercentSalaryHike,4
+Mixed Naive Bayes,PerformanceRating,1
+Mixed Naive Bayes,RelationshipSatisfaction,4
+Mixed Naive Bayes,StockOptionLevel,2
+Mixed Naive Bayes,TotalWorkingYears,1
+Mixed Naive Bayes,TrainingTimesLastYear,3
+Mixed Naive Bayes,WorkLifeBalance,4
+Mixed Naive Bayes,YearsAtCompany,5
+Mixed Naive Bayes,YearsInCurrentRole,4
+Mixed Naive Bayes,YearsSinceLastPromotion,2
+Mixed Naive Bayes,YearsWithCurrManager,0
+Logistic Regression,Age,10
+Logistic Regression,BusinessTravel,7
+Logistic Regression,DailyRate,1
+Logistic Regression,Department,4
+Logistic Regression,DistanceFromHome,6
+Logistic Regression,Education,1
+Logistic Regression,EducationField,7
+Logistic Regression,EnvironmentSatisfaction,8
+Logistic Regression,Gender,2
+Logistic Regression,HourlyRate,2
+Logistic Regression,JobInvolvement,10
+Logistic Regression,JobLevel,4
+Logistic Regression,JobRole,9
+Logistic Regression,JobSatisfaction,9
+Logistic Regression,MaritalStatus,10
+Logistic Regression,MonthlyIncome,2
+Logistic Regression,MonthlyRate,1
+Logistic Regression,NumCompaniesWorked,8
+Logistic Regression,OverTime,10
+Logistic Regression,PercentSalaryHike,0
+Logistic Regression,PerformanceRating,2
+Logistic Regression,RelationshipSatisfaction,3
+Logistic Regression,StockOptionLevel,6
+Logistic Regression,TotalWorkingYears,3
+Logistic Regression,TrainingTimesLastYear,3
+Logistic Regression,WorkLifeBalance,6
+Logistic Regression,YearsAtCompany,1
+Logistic Regression,YearsInCurrentRole,6
+Logistic Regression,YearsSinceLastPromotion,3
+Logistic Regression,YearsWithCurrManager,2
+LDA,Age,10
+LDA,BusinessTravel,5
+LDA,DailyRate,0
+LDA,Department,4
+LDA,DistanceFromHome,3
+LDA,Education,2
+LDA,EducationField,1
+LDA,EnvironmentSatisfaction,6
+LDA,Gender,2
+LDA,HourlyRate,2
+LDA,JobInvolvement,8
+LDA,JobLevel,1
+LDA,JobRole,1
+LDA,JobSatisfaction,7
+LDA,MaritalStatus,10
+LDA,MonthlyIncome,2
+LDA,MonthlyRate,3
+LDA,NumCompaniesWorked,10
+LDA,OverTime,10
+LDA,PercentSalaryHike,3
+LDA,PerformanceRating,4
+LDA,RelationshipSatisfaction,5
+LDA,StockOptionLevel,4
+LDA,TotalWorkingYears,3
+LDA,TrainingTimesLastYear,2
+LDA,WorkLifeBalance,6
+LDA,YearsAtCompany,5
+LDA,YearsInCurrentRole,4
+LDA,YearsSinceLastPromotion,6
+LDA,YearsWithCurrManager,6
+QDA,Age,10
+QDA,BusinessTravel,1
+QDA,DailyRate,1
+QDA,Department,5
+QDA,DistanceFromHome,4
+QDA,Education,2
+QDA,EducationField,5
+QDA,EnvironmentSatisfaction,8
+QDA,Gender,5
+QDA,HourlyRate,2
+QDA,JobInvolvement,7
+QDA,JobLevel,9
+QDA,JobRole,1
+QDA,JobSatisfaction,6
+QDA,MaritalStatus,6
+QDA,MonthlyIncome,8
+QDA,MonthlyRate,2
+QDA,NumCompaniesWorked,5
+QDA,OverTime,10
+QDA,PercentSalaryHike,1
+QDA,PerformanceRating,2
+QDA,RelationshipSatisfaction,1
+QDA,StockOptionLevel,5
+QDA,TotalWorkingYears,4
+QDA,TrainingTimesLastYear,2
+QDA,WorkLifeBalance,2
+QDA,YearsAtCompany,3
+QDA,YearsInCurrentRole,4
+QDA,YearsSinceLastPromotion,4
+QDA,YearsWithCurrManager,4
