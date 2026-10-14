@@ -1,0 +1,11 @@
+Fold,SelectedFeatures,NumberSelected,CFS_Merit
+1,"['OverTime', 'StockOptionLevel', 'JobLevel', 'YearsAtCompany']",4,0.06451898818719667
+2,"['OverTime', 'JobLevel', 'StockOptionLevel', 'YearsWithCurrManager', 'JobRole', 'Age', 'BusinessTravel', 'JobInvolvement', 'YearsAtCompany', 'EnvironmentSatisfaction', 'MaritalStatus']",11,0.066775964285801
+3,"['OverTime', 'JobLevel', 'StockOptionLevel', 'YearsWithCurrManager', 'Age', 'JobRole', 'MaritalStatus', 'BusinessTravel', 'YearsAtCompany']",9,0.06673980100170877
+4,"['OverTime', 'StockOptionLevel', 'JobLevel', 'YearsAtCompany', 'BusinessTravel', 'Age', 'JobRole', 'JobInvolvement', 'YearsWithCurrManager', 'MaritalStatus']",10,0.06274227980039665
+5,"['OverTime', 'StockOptionLevel', 'JobLevel', 'YearsAtCompany', 'BusinessTravel', 'Age', 'MaritalStatus', 'JobInvolvement', 'JobRole']",9,0.06402300969711155
+6,"['OverTime', 'JobLevel', 'StockOptionLevel', 'YearsAtCompany', 'Age', 'JobRole', 'JobInvolvement', 'BusinessTravel', 'MaritalStatus']",9,0.06504141053941691
+7,"['OverTime', 'JobLevel', 'StockOptionLevel', 'YearsAtCompany', 'JobInvolvement', 'Age', 'BusinessTravel', 'JobRole', 'MaritalStatus']",9,0.06164847083821338
+8,"['OverTime', 'JobLevel', 'StockOptionLevel', 'YearsAtCompany']",4,0.06678810578048862
+9,"['OverTime', 'JobLevel', 'StockOptionLevel', 'YearsAtCompany', 'BusinessTravel', 'JobRole', 'Age', 'MaritalStatus', 'YearsWithCurrManager', 'JobInvolvement']",10,0.06498599746566652
+10,"['OverTime', 'StockOptionLevel', 'JobLevel']",3,0.06834697049580855
