@@ -13,25 +13,37 @@
 
 \setlength{\emergencystretch}{2em}
 
-% Figures for PA1.
-% PA2 can later be added as an additional path.
+% Shared figure paths
 \graphicspath{
     {../figures/pa1/}
     {../figures/pa2/}
 }
 
-\title{
-    Employee Attrition Prediction Using
-    Non-Probabilistic Classification and Feature Selection
-}
-
-\author{Adolfo Borrego Gonz\'alez}
-
-\date{Practical Application 1 --- Machine Learning}
-
 \begin{document}
 
-\maketitle
+\begin{center}
+
+    {\LARGE\bfseries
+    Employee Attrition Prediction Using\\
+    Non-Probabilistic and Probabilistic Classification\\
+    with Feature Selection
+    \par}
+
+    \vspace{1cm}
+
+    \includegraphics[width=0.8\textwidth]{../logo-upm.png}
+
+    \vspace{0.8cm}
+
+    {\large Adolfo Borrego Gonz\'alez\par}
+
+    \vspace{0.3cm}
+
+    {\large Practical Applications 1 and 2 --- Machine Learning\par}
+
+\end{center}
+
+\vspace{1cm}
 
 \begin{abstract}
 
@@ -39,24 +51,34 @@ Employee attrition is studied as a binary supervised classification problem
 using 1,470 observations from the IBM HR Analytics Employee Attrition \&
 Performance dataset.
 
-K-NN, Decision Tree, Support Vector Machine and Neural Network classifiers are
-compared using all valid predictors, a univariate filter, an mRMR-inspired
-multivariate filter and a forward-selection wrapper.
+Practical Applications 1 and 2 compare K-NN, Decision Tree, Support Vector
+Machine and Neural Network classifiers with Mixed Naive Bayes, Logistic
+Regression, Linear and Quadratic Discriminant Analysis. Each family is
+evaluated with all valid predictors, univariate and multivariate filters,
+and a forward-selection wrapper; Bagging, AdaBoost and Stacking extend the
+probabilistic comparison.
 
 Predictive performance is estimated through stratified 10-fold
 cross-validation, with preprocessing and selection fitted within each outer
 training fold; the wrapper uses internal five-fold selection.
 
-The complete representation with the Neural Network obtains the highest mean
-F1-score (0.4738) and balanced accuracy (0.6765). Reducing 51 transformed
-features to 15 benefits some classifiers, particularly K-NN under univariate
-and wrapper selection, but does not improve the strongest full-feature
-configuration.
+The full-feature Neural Network leads PA1 in F1 (0.4738). In PA2, full-feature
+Logistic Regression obtains F1 0.5373 and the highest AUC (0.8375), while
+Stacking marginally increases F1 to 0.5394 and achieves the lowest
+probability-vector Brier score (0.1846). Full-feature Mixed Naive Bayes
+provides the highest PA2 recall (0.6453). Feature selection offers smaller
+representations but does not outperform the strongest complete-feature models.
 
-Repeated selection of original variables supports contextual interpretation
-of the reduced representations.
+Recurring predictors, including overtime, job level, stock-option level and
+company tenure, support predictive interpretation without implying causality.
 
 \end{abstract}
+
+\newpage
+
+\tableofcontents
+
+\newpage
 
 \input{sections/introduction}
 \input{sections/problem_description}

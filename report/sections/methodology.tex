@@ -1,18 +1,27 @@
 \section{Methodology}
-\subsection{Data Preprocessing}
+\subsection{PA1: Non-Probabilistic Classification}
+\subsubsection{Data Preprocessing}
 The four non-predictive columns identified above are removed, leaving 30 original predictors. No imputation is needed because there are no missing values. The target is encoded as \texttt{No}=0 and \texttt{Yes}=1. The 23 numerical predictors are standardised using \texttt{StandardScaler}; the seven categorical predictors are encoded using \texttt{OneHotEncoder} with \texttt{handle\_unknown="ignore"}. Integer variables representing ordinal levels retain their ordered numerical representation. The complete encoded representation contains 51 transformed features.
 
 A scikit-learn \texttt{Pipeline}~\cite{sklearn} combines preprocessing, optional selection and classification. Fitted preprocessing from structural inspection is not reused for evaluation. Transformations and selectors are fitted on each outer training fold, and then applied to its held-out fold.
 
-\subsection{Classification Algorithms}
-Four classifiers are used: K-NN classifies from neighbouring observations; Decision Tree uses successive feature splits; SVM constructs a separating decision boundary; and the Neural Network learns a multilayer representation for classification. The implementations are \texttt{KNeighborsClassifier()}, \texttt{DecisionTreeClassifier} (random seed 42), \texttt{SVC()} and \texttt{MLPClassifier} (random seed 42; maximum 2,000 iterations). Other parameters remain at their defaults. These default or minimal configurations are kept consistent across representations to isolate the effect of selection. Hyperparameters are not tuned, and no resampling or class weighting is applied.
+\subsubsection{Classification Algorithms}
+Four classifiers are used: K-NN classifies from neighbouring observations; Decision Tree uses successive feature splits; SVM constructs a separating decision boundary; and the Neural Network learns a multilayer representation for classification. The implementations are \texttt{KNeighborsClassifier()}, \texttt{DecisionTreeClassifier} (random seed 42), \texttt{SVC()} and \texttt{MLPClassifier} (random seed 42; maximum 2,000 iterations). Other parameters remain at their defaults. The tree is scikit-learn's implementation, not an exact implementation of ID3 or C4.5. These default or minimal configurations are kept consistent across representations to isolate the effect of selection. Hyperparameters are not tuned, and no resampling or class weighting is applied.
 
-\subsection{Evaluation Methodology}
+\subsection{Shared Evaluation Protocol and Metrics}
+\label{sec:evaluation}
 Every configuration is evaluated using \texttt{StratifiedKFold} with ten shuffled folds and random seed 42. Stratification approximately preserves class proportions. Each outer held-out fold is excluded from fitting preprocessing, selecting features and training the classifier, providing an honest estimate for each fixed configuration. Reported scores are arithmetic means of the ten held-out-fold scores.
 
-Accuracy, precision, recall, F1-score and balanced accuracy are recorded. Precision, recall and F1 refer to the positive class, \texttt{Attrition=Yes}. Recall measures the proportion of employees leaving that are detected; F1 balances precision and recall through their harmonic mean. Balanced accuracy averages sensitivity and specificity, giving both classes equal importance. F1 and balanced accuracy therefore guide the comparison, with recall providing additional information about minority-class detection.
+Accuracy measures the proportion of correct predictions. Precision (positive predictive value) measures the proportion of predicted attrition cases that are positive; recall (sensitivity) measures the proportion of actual attrition cases detected. Specificity measures the proportion of negative cases correctly identified. F1-measure is the harmonic mean of precision and recall. Positive-class metrics refer to \texttt{Attrition=Yes}. PA1 records accuracy, precision, recall, F1 and balanced accuracy; the latter averages sensitivity and specificity and is retained as a supplementary PA1 measure.
 
-\subsection{Feature Selection Strategies}
+PA2 reports accuracy, precision, recall, specificity, F1, area under the ROC curve (AUC), and Brier score. AUC evaluates discrimination across decision thresholds. Brier evaluates squared error in the complete predicted class-probability vector:
+\[
+ B=\frac{1}{n}\sum_{i=1}^{n}\sum_{c\in\{0,1\}}
+ \left(p_{ic}-\mathbf{1}\{y_i=c\}\right)^2.
+\]
+Lower values indicate better probability predictions. This implementation is twice the binary Brier score computed from the positive-class probability alone. Brier reflects both calibration and discrimination, rather than calibration alone. Balanced accuracy is not a primary PA2 metric. Predictions use the implemented classifiers' default decision rules; thresholds are not optimised for recall.
+
+\subsection{PA1: Feature Selection Strategies}
 \paragraph{All Features.} The baseline pipeline applies preprocessing directly followed by the classifier, retaining all valid original predictors and their 51 transformed features.
 
 \paragraph{Univariate Filter.} After preprocessing, \texttt{SelectKBest} with \texttt{f\_classif} and $k=15$ retains the 15 transformed features with the highest individual ANOVA F-scores. It assesses association with the target separately for each feature~\cite{selectiondocs}.
@@ -22,3 +31,32 @@ Accuracy, precision, recall, F1-score and balanced accuracy are recorded. Precis
 \paragraph{Wrapper.} \texttt{SequentialFeatureSelector} performs forward selection of 15 transformed features using a \texttt{DecisionTreeClassifier} with random seed 42, F1 scoring and internal five-fold CV~\cite{selectiondocs}. The same tree-based selection procedure precedes each of the four final classifiers. Selection is nested within the outer ten-fold evaluation: inner CV chooses the subset, while outer held-out folds estimate predictive performance. In the existing implementation, preprocessing is fitted on the outer training fold before the selector's inner CV; it is not refitted within each inner split. The outer test fold remains excluded throughout.
 
 For interpretation only, separate selector pipelines are fitted to the full dataset to export selected-feature lists. These fits do not generate the reported predictive scores. Their overlap describes agreement across the three strategies in these descriptive fits, rather than selection frequency across CV folds. One-hot categories are mapped back to their original variables.
+
+\subsection{PA2: Probabilistic Classification}
+\subsubsection{Model-Specific Representations}
+PA2 retains the same 30 valid original predictors and target. One representative implementation is used per family. Mixed Naive Bayes estimates Gaussian class-conditional distributions for continuous predictors and discrete class-conditional probabilities with Laplace smoothing ($\alpha=1$) for ordinal and nominal predictors. It combines these contributions under conditional independence given the class.
+
+Logistic Regression models the log-odds of attrition as an additive function of its transformed predictors. Its pipeline applies \texttt{StandardScaler} to continuous and ordinal variables and \texttt{OneHotEncoder} with one reference category to nominal variables. \texttt{LogisticRegression} uses a maximum of 2,000 iterations and random seed 42, with remaining parameters at defaults.
+
+LDA and QDA model class-conditional distributions with shared and class-specific covariance matrices, respectively. Their pipelines standardise numerical/ordinal predictors and retain one numerically encoded column per nominal predictor, avoiding the rank deficiency introduced by expanded dummy variables. These nominal codes do not imply a meaningful order; their numerical use is a representation limitation. The implementations are \texttt{LinearDiscriminantAnalysis()} and \texttt{QuadraticDiscriminantAnalysis()}. Thus, the families do not receive an identical transformed matrix. Every representation is fitted using training data only.
+
+\subsubsection{Feature Selection on Original Predictors}
+\paragraph{All Features.} All 30 valid original predictors are retained before model-specific preprocessing.
+
+\paragraph{Univariate Filter.} A type-aware selector evaluates continuous predictors with ANOVA F-statistics and ordinal/nominal predictors with mutual information. Scores are standardised separately within these two families because their scales differ. The 15 highest-ranked original predictors are retained inside each training fold, before model-specific transformation.
+
+\paragraph{Multivariate Filter.} Correlation-based Feature Selection (CFS) evaluates subset relevance to the target and redundancy between predictors using Symmetrical Uncertainty. Continuous variables are discretised into up to five quantile bins using training data only for this criterion; selected predictors retain their original values for classification. For a subset of size $k$, the merit is
+\[
+ M=\frac{k\overline{SU}_{Xy}}
+ {\sqrt{k+k(k-1)\overline{SU}_{XX}}},
+\]
+where the averages describe predictor--target association and pairwise predictor redundancy. Greedy forward search considers up to 15 original predictors and retains the subset with the highest merit found. This CFS procedure differs from PA1's mRMR-inspired selector.
+
+\paragraph{Wrapper.} Classifier-specific sequential forward selection searches up to 15 original predictors and retains the subset with the highest internal mean F1. Each classifier conducts its own search in each outer training fold. Internal stratified five-fold CV evaluates candidate model pipelines, refitting preprocessing within each inner training split. The selected pipeline is then fitted on the outer training data and evaluated on its held-out fold using the shared ten-fold protocol. Feature search and final performance estimation are therefore separated; PA1's common tree-based wrapper is not reused.
+
+Separate full-data PA2 filter fits are descriptive only. Fold-level selections are also recorded to assess recurrence under the evaluation protocol, providing information distinct from PA1's descriptive agreement counts.
+
+\subsubsection{Metaclassifiers}
+Representative Bagging, AdaBoost and Stacking configurations are evaluated with all valid predictors. Bagging aggregates 100 Decision Trees; AdaBoost combines 100 decision stumps (trees with maximum depth one). Stacking uses Logistic Regression and LDA as base learners and Logistic Regression as the final estimator, trained on internally generated probability predictions with five-fold CV. QDA was excluded from stacking because covariance estimation became numerically unstable in its internal folds.
+
+The ensemble pipelines standardise numerical/ordinal predictors and one-hot encode nominal predictors with a reference category. This shared ensemble representation differs from the standalone LDA/QDA representation. Preprocessing is fitted on each outer training fold before the ensemble's internal operations; it is not independently refitted inside stacking's internal folds. The outer held-out fold remains excluded, so the reported ensemble scores are honest outer-fold estimates, although the internal stacking representation has this limitation. Ensemble variants beyond these representatives are not evaluated.
