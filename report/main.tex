@@ -52,7 +52,7 @@ using 1,470 observations from the IBM HR Analytics Employee Attrition \&
 Performance dataset.
 
 Practical Applications 1 and 2 compare K-NN, Decision Tree, Support Vector
-Machine and Neural Network classifiers with Mixed Naive Bayes, Logistic
+Machine, Neural Network and RIPPER classifiers with Mixed Naive Bayes, Logistic
 Regression, Linear and Quadratic Discriminant Analysis. Each family is
 evaluated with all valid predictors, univariate and multivariate filters,
 and a forward-selection wrapper; Bagging, AdaBoost and Stacking extend the
@@ -60,7 +60,8 @@ probabilistic comparison.
 
 Predictive performance is estimated through stratified 10-fold
 cross-validation, with preprocessing and selection fitted within each outer
-training fold; the wrapper uses internal five-fold selection.
+training fold; the original wrappers use internal five-fold selection; RIPPER uses a bounded
+three-step search with two internal folds.
 
 The full-feature Neural Network leads PA1 in F1 (0.4738). In PA2, full-feature
 Logistic Regression obtains F1 0.5373 and the highest AUC (0.8375), while

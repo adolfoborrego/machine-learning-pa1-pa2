@@ -6,6 +6,16 @@ Selection does not universally improve performance. K-NN benefits from univariat
 
 The filters assess feature--target association, with the multivariate filter also penalising redundancy. For example, the univariate subset retains both complementary overtime indicators, whereas the multivariate subset retains only \texttt{OverTime\_Yes}. The wrapper evaluates candidate additions through a Decision Tree's F1, so the resulting representation is linked to that estimator rather than independently optimised for every final classifier. These different criteria explain why the methods need not choose identical subsets or favour the same classifier. The 70.59\% reduction offers a more compact representation, but 15 transformed features do not necessarily represent 15 distinct employee characteristics. No selection strategy is best on every metric.
 
+
+RIPPER represents a distinct Rule Induction family through explicit IF--THEN
+rule sets. Its classifier-specific wrapper raises F1 from 0.2866 to 0.3996
+and provides the highest reduced-feature F1, while the complete Neural
+Network remains best overall. The wrapper averages 2.6 original predictors,
+whereas the filters select 15 transformed columns. Different units and the
+bounded two-fold/three-step search prevent attributing these differences
+solely to classifier choice. The existing overlap tables describe the
+original full-data selections, not RIPPER's fold-specific wrapper.
+
 \subsection{Integrated Performance and Probability Quality}
 Full-feature Logistic Regression in PA2 exceeds PA1's full-feature Neural Network in observed F1, while their recall is similar. Its additive log-odds model offers a comparatively simple probabilistic representation. Retaining all predictors allows jointly useful associations to contribute even when individual filter scores are modest; its default regularisation also limits coefficient magnitude. These properties plausibly explain its competitiveness, rather than establish the mechanism. Comparisons between PA1 and PA2 reflect both classifier and representation choices, so they do not isolate an effect of probabilistic modelling alone.
 

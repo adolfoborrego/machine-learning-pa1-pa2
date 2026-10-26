@@ -4,3 +4,4 @@ scikit-learn
 matplotlib
 jupyter
 ipykernel
+wittgenstein==0.3.5

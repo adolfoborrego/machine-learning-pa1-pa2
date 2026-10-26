@@ -16,7 +16,7 @@ Se utiliza **IBM HR Analytics Employee Attrition & Performance**, disponible en
 - Tras eliminar `EmployeeNumber`, `EmployeeCount`, `Over18` y `StandardHours`,
   quedan 30 predictores: 23 num?ricos y 7 categ?ricos.
 
-Los predictores num?ricos se estandarizan con `StandardScaler` y los categ?ricos
+Para los cuatro clasificadores originales, los predictores num?ricos se estandarizan con `StandardScaler` y los categ?ricos
 se codifican con `OneHotEncoder(handle_unknown="ignore")`. Las variables enteras
 ordinales conservan su representaci?n num?rica ordenada. La representaci?n
 completa contiene 51 caracter?sticas transformadas.
@@ -53,11 +53,12 @@ El c?digo experimental est? en los notebooks. No se necesita una carpeta `src/`.
 | 5 | `05_univariate_selection.ipynb` | Filtro univariante |
 | 6 | `06_multivariate_selection.ipynb` | Filtro multivariante |
 | 7 | `07_wrapper_selection.ipynb` | Selecci?n mediante wrapper |
-| 8 | `08_final_analysis.ipynb` | Comparaci?n final, solapamiento, figuras y tablas |
+| 8 | `08_rule_induction.ipynb` | RIPPER: cuatro estrategias, seleccion y evaluacion anidadas |
+| 9 | `09_final_analysis.ipynb` | Comparaci?n final, solapamiento, figuras y tablas |
 
 ## Dise?o experimental
 
-Se comparan cuatro clasificadores: K-NN, ?rbol de Decisi?n, SVM y Red Neuronal.
+Los cuatro clasificadores originales son: K-NN, ?rbol de Decisi?n, SVM y Red Neuronal.
 Se mantienen sus configuraciones predeterminadas o m?nimas:
 
 ```python
@@ -93,6 +94,46 @@ sobre todos los datos para interpretaci?n. Su solapamiento indica coincidencia
 entre estrategias, no frecuencia de selecci?n entre folds. Las categor?as
 one-hot se agrupan por variable original para interpretarlas.
 
+
+### Rule Induction: RIPPER
+
+PA1 incluye una quinta familia independiente: induccion de reglas, representada
+por RIPPER (`wittgenstein==0.3.5`, https://github.com/imoscovitz/wittgenstein).
+Construye reglas IF-THEN mediante crecimiento, poda y optimizacion del conjunto.
+El notebook 08 evalua las cuatro estrategias con los mismos diez folds externos,
+semilla 42 y clase positiva `Attrition=Yes`, sin reentrenar los modelos originales.
+
+Con todos los atributos usa los 30 predictores originales: categorias nominales
+como strings sin orden artificial y numeros sin escalar. RIPPER ajusta sus bins
+(hasta diez, para variables numericas con mas de diez valores distintos) solo
+en entrenamiento y los reutiliza en validacion. Sus parametros restantes son
+los predeterminados, incluida la poda interna y dos pasadas de optimizacion.
+Se convierten columnas pandas string/category a object para compatibilidad;
+se usan llamadas explicitas fit/predict para evitar limitaciones de interfaz
+con versiones recientes de scikit-learn.
+
+Los filtros reutilizan exactamente ANOVA k=15 y el selector inspirado en mRMR
+de PA1 dentro de cada entrenamiento externo. RIPPER conserva los 15 componentes
+seleccionados: numeros en unidades originales e indicadores dummy seleccionados.
+No se restaura una variable categorica completa a partir de un solo indicador.
+Por tanto, estos subconjuntos tienen unidades distintas del baseline de RIPPER.
+
+El wrapper de RIPPER es propio: seleccion secuencial hacia delante sobre
+predictores originales, dos folds internos estratificados, F1 y hasta tres
+adiciones. Conserva el mejor prefijo segun F1 interno (empates: menos variables).
+Este presupuesto fijo limita coste, amplitud de busqueda y precision interna
+frente al wrapper previo de 15 componentes/cinco folds basado en arbol.
+Cada candidato vuelve a ajustar RIPPER y sus bins dentro del entrenamiento
+interno; nunca utiliza validacion externa para seleccionar.
+
+Ejecutar 04–07, luego 08 y finalmente 09. El notebook 08 incorpora solo filas
+RIPPER a los ocho CSV existentes, preservando las filas originales; repetirlo
+reemplaza sus propias filas. `results/pa1/ripper_fold_results.csv` registra las
+40 evaluaciones, subconjuntos, traza del wrapper, bins y reglas. Los solapamientos
+descriptivos previos siguen describiendo exclusivamente los selectores originales.
+La tabla final contiene 20 configuraciones. Los recuentos del wrapper RIPPER
+son medias entre folds, no un subconjunto global fijo.
+
 ## Resultados principales
 
 La tabla muestra el clasificador con mayor F1 medio en cada estrategia:
@@ -102,13 +143,13 @@ La tabla muestra el clasificador con mayor F1 medio en cada estrategia:
 | Todas las caracter?sticas | Red Neuronal | 0.4738 | 0.6765 |
 | Filtro univariante | ?rbol de Decisi?n | 0.3809 | 0.6347 |
 | Filtro multivariante | Red Neuronal | 0.3902 | 0.6341 |
-| Wrapper | Red Neuronal | 0.3919 | 0.6286 |
+| Wrapper | RIPPER | 0.3996 | 0.6557 |
 
 La Red Neuronal con todas las caracter?sticas obtiene el mejor F1 y balanced
 accuracy observados. SVM con todas las caracter?sticas alcanza la mayor accuracy
 (0.8653) y precision (0.8363), pero su recall es 0.2241.
 
-La selecci?n reduce la dimensionalidad de 51 a 15 caracter?sticas (70,59 %).
+En los cuatro clasificadores originales, la selecci?n reduce la dimensionalidad de 51 a 15 caracter?sticas (70,59 %).
 Beneficia a algunos clasificadores, especialmente K-NN con el filtro univariante
 y el wrapper, pero no supera al mejor modelo con la representaci?n completa.
 Ninguna estrategia de selecci?n es universalmente la mejor.
@@ -117,6 +158,11 @@ Las variables originales seleccionadas por las tres estrategias son
 `BusinessTravel`, `JobInvolvement`, `JobRole`, `MaritalStatus`, `MonthlyIncome`,
 `OverTime` y `StockOptionLevel`. Estas coincidencias describen asociaciones
 relevantes para la clasificaci?n; no implican causalidad.
+
+RIPPER obtiene F1 0.2866 (todos), 0.2316 (univariante), 0.2280
+(multivariante) y 0.3996 (wrapper). Su wrapper conserva una media de 2.6
+predictores originales (dos a tres por fold). Mejora el mejor F1 reducido,
+pero no cambia el mejor F1 global de PA1 (Red Neuronal, 0.4738).
 
 ## Entorno y reproducci?n
 
