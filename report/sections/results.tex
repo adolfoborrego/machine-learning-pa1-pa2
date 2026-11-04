@@ -7,48 +7,43 @@ With all features, the Neural Network achieves the highest mean F1 (0.4738)
 and balanced accuracy (0.6765), with recall 0.4219. SVM obtains the highest
 accuracy (0.8653) and precision (0.8363), but recall is 0.2241. Decision Tree
 obtains F1 0.3620 and balanced accuracy 0.6206; K-NN obtains F1 0.2115 and
-balanced accuracy 0.5577.
+balanced accuracy 0.5577. RIPPER, using 30 original predictors, obtains F1 0.2866 and balanced accuracy 0.5818.
 
 \subsubsection{Univariate Filter}
 
 Decision Tree remains the highest-F1 classifier under univariate selection, with F1
 0.3809 and balanced accuracy 0.6347. Its F1 and balanced accuracy improve
 relative to the baseline, as do those of K-NN (F1 0.2968). SVM and Neural
-Network obtain lower F1 and balanced accuracy than with all features.
+Network obtain lower F1 and balanced accuracy than with all features. RIPPER obtains F1 0.2316 and balanced accuracy 0.5645 with 15 selected transformed components.
 
 \subsubsection{Multivariate Filter}
 
 The Neural Network has the highest F1 within this strategy, at 0.3902, with
 balanced accuracy 0.6341. Decision Tree obtains F1 0.3748. Both K-NN and SVM
-score below their baselines; SVM recall falls to 0.0511 and F1 to 0.0910.
+score below their baselines; SVM recall falls to 0.0511 and F1 to 0.0910. RIPPER obtains F1 0.2280 and balanced accuracy 0.5653 with the same 15-component filter criterion.
 
 \subsubsection{Wrapper}
 
-Among the four original classifiers, the Neural Network has the highest wrapper F1 (0.3919), with
+Under the tree-based wrapper, the Neural Network has the highest F1 (0.3919), with
 balanced accuracy 0.6286. K-NN improves from baseline F1 0.2115 to 0.3146 and
 from recall 0.1350 to 0.2364. Neither the wrapper Neural Network nor the other
 reduced configurations exceed the full-feature Neural Network in F1 or
 balanced accuracy.
 
 
-\subsubsection{Rule Induction: RIPPER}
-RIPPER obtains mean F1 0.2866 with all 30 original predictors, 0.2316 with
-univariate filtering, 0.2280 with multivariate filtering, and 0.3996 with its
-own bounded wrapper. Corresponding balanced accuracies are 0.5818, 0.5645,
-0.5653 and 0.6557. The wrapper retains a mean of 2.6 original predictors
-(range two to three) across outer folds. Its filters retain 15 transformed
-columns rather than 15 original predictors. The wrapper improves RIPPER's
-all-feature F1 and leads the reduced configurations, but does not exceed the
-full-feature Neural Network's F1 0.4738 or balanced accuracy 0.6765. Thus
-adding Rule Induction does not change the best observed PA1 F1.
+The RIPPER wrapper obtains F1 0.3996 and balanced accuracy
+0.6557, leading the reduced configurations. It retains a mean of 2.6 original
+predictors (range two to three) across outer folds. This differs from the
+15 transformed components selected by the tree wrapper. It improves RIPPER's
+all-feature F1 without exceeding the full-feature Neural Network.
 
 \subsubsection{Overall Comparison}
 
 Table~\ref{tab:best} lists the highest-F1 configuration within each strategy.
 Figure~\ref{fig:f1} shows all 20 F1 comparisons. Among reduced configurations,
 the RIPPER wrapper has the highest F1 (0.3996) and balanced accuracy (0.6557).
-The four original classifiers retain 15 of 51 transformed features under
-selection, a 70.59\% reduction; RIPPER counts use the units described above.
+K-NN, Decision Tree, SVM and Neural Network retain 15 of 51 transformed features
+under selection, a 70.59\% reduction; RIPPER counts use the units described above.
 
 \begin{table}[htbp]
     \centering

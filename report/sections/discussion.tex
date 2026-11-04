@@ -4,17 +4,34 @@ The imbalance explains why accuracy must be considered alongside minority-class 
 
 Selection does not universally improve performance. K-NN benefits from univariate and wrapper selection, with the wrapper yielding its largest F1 improvement; multivariate selection instead lowers its F1. Removing dimensions can change which observations are considered neighbours, so retaining a useful subset can help this classifier. This interpretation is consistent with the observed improvements but does not establish the mechanism. Decision Tree improves moderately with the filters. All reduced Neural Network configurations lose performance relative to its complete representation, suggesting that the omitted information is useful in that experimental setting.
 
-The filters assess feature--target association, with the multivariate filter also penalising redundancy. For example, the univariate subset retains both complementary overtime indicators, whereas the multivariate subset retains only \texttt{OverTime\_Yes}. The wrapper evaluates candidate additions through a Decision Tree's F1, so the resulting representation is linked to that estimator rather than independently optimised for every final classifier. These different criteria explain why the methods need not choose identical subsets or favour the same classifier. The 70.59\% reduction offers a more compact representation, but 15 transformed features do not necessarily represent 15 distinct employee characteristics. No selection strategy is best on every metric.
+The filters assess feature--target association, with the multivariate filter also penalising redundancy. For example, the univariate subset retains both complementary overtime indicators, whereas the multivariate subset retains only \texttt{OverTime\_Yes}. For K-NN, Decision Tree, SVM and Neural Network, the wrapper evaluates candidate additions through a Decision Tree's F1, so the resulting representation is linked to that estimator rather than independently optimised for every final classifier. These different criteria explain why the methods need not choose identical subsets or favour the same classifier. The 70.59\% reduction offers a more compact representation, but 15 transformed features do not necessarily represent 15 distinct employee characteristics. No selection strategy is best on every metric.
 
 
-RIPPER represents a distinct Rule Induction family through explicit IF--THEN
-rule sets. Its classifier-specific wrapper raises F1 from 0.2866 to 0.3996
+RIPPER's rule-based predictions can be inspected through explicit IF--THEN
+conditions. Its classifier-specific wrapper raises F1 from 0.2866 to 0.3996
 and provides the highest reduced-feature F1, while the complete Neural
 Network remains best overall. The wrapper averages 2.6 original predictors,
 whereas the filters select 15 transformed columns. Different units and the
 bounded two-fold/three-step search prevent attributing these differences
-solely to classifier choice. The existing overlap tables describe the
-original full-data selections, not RIPPER's fold-specific wrapper.
+solely to classifier choice. The overlap tables describe descriptive full-data
+selector fits, whereas RIPPER's wrapper selections vary across outer folds.
+
+The induced rules explain positive predictions through explicit conjunctions,
+rather than feature retention alone. For example, the first outer training-fold
+wrapper model includes the rule \texttt{OverTime=Yes} AND
+\texttt{StockOptionLevel=0} AND \texttt{JobRole=SalesExecutive}; a matching
+employee is classified as attrition. Another rule in that same model requires
+\texttt{StockOptionLevel=0} and \texttt{JobRole=SalesRepresentative}, without
+an overtime condition. Thus overtime is not required by every positive rule.
+Across wrapper folds, overtime is selected in all ten, job role in eight and
+job level in three; stock-option level appears in two, while company tenure,
+department and work-life balance each appear in one. These are selections,
+not condition frequencies or causal effects. Conditions within each rule are
+joined by AND; rules are joined by OR, with no matching rule predicting no
+attrition. Fold-specific rule sets illustrate model behaviour and should not
+be presented as a single universal full-data rule set. They provide a more
+direct explanation of decisions than the Neural Network's performance scores
+or descriptive feature-overlap lists.
 
 \subsection{Integrated Performance and Probability Quality}
 Full-feature Logistic Regression in PA2 exceeds PA1's full-feature Neural Network in observed F1, while their recall is similar. Its additive log-odds model offers a comparatively simple probabilistic representation. Retaining all predictors allows jointly useful associations to contribute even when individual filter scores are modest; its default regularisation also limits coefficient magnitude. These properties plausibly explain its competitiveness, rather than establish the mechanism. Comparisons between PA1 and PA2 reflect both classifier and representation choices, so they do not isolate an effect of probabilistic modelling alone.
