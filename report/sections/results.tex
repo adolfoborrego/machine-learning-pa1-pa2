@@ -1,61 +1,50 @@
 \section{Results}
 
 \subsection{PA1: Non-Probabilistic Classification}
-\subsubsection{Original Feature Set}
+\subsubsection{All Features}
 
-With all features, the Neural Network achieves the highest mean F1 (0.4738)
-and balanced accuracy (0.6765), with recall 0.4219. SVM obtains the highest
-accuracy (0.8653) and precision (0.8363), but recall is 0.2241. Decision Tree
-obtains F1 0.3620 and balanced accuracy 0.6206; K-NN obtains F1 0.2115 and
-balanced accuracy 0.5577. RIPPER, using 30 original predictors, obtains F1 0.2866 and balanced accuracy 0.5818.
+With all features, the Neural Network has the highest F1 (0.4738) and balanced
+accuracy (0.6765). SVM has the highest accuracy and precision but much lower
+recall (0.2241). The remaining models have lower F1; their complete metrics
+appear in Table~\ref{tab:pa1-all}.
 
 \subsubsection{Univariate Filter}
 
-Decision Tree remains the highest-F1 classifier under univariate selection, with F1
-0.3809 and balanced accuracy 0.6347. Its F1 and balanced accuracy improve
-relative to the baseline, as do those of K-NN (F1 0.2968). SVM and Neural
-Network obtain lower F1 and balanced accuracy than with all features. RIPPER obtains F1 0.2316 and balanced accuracy 0.5645 with 15 selected transformed components.
+Decision Tree leads this strategy in F1 (0.3809) and balanced accuracy (0.6347).
+It and K-NN improve relative to their all-feature results; SVM, Neural Network
+and RIPPER lose F1 after univariate selection.
 
 \subsubsection{Multivariate Filter}
 
-The Neural Network has the highest F1 within this strategy, at 0.3902, with
-balanced accuracy 0.6341. Decision Tree obtains F1 0.3748. Both K-NN and SVM
-score below their baselines; SVM recall falls to 0.0511 and F1 to 0.0910. RIPPER obtains F1 0.2280 and balanced accuracy 0.5653 with the same 15-component filter criterion.
+The Neural Network leads this strategy in F1 (0.3902), followed by Decision
+Tree (0.3748). K-NN, SVM and RIPPER fall below their all-feature F1 scores;
+SVM recall drops to 0.0511.
 
 \subsubsection{Wrapper}
 
-Under the tree-based wrapper, the Neural Network has the highest F1 (0.3919), with
-balanced accuracy 0.6286. K-NN improves from baseline F1 0.2115 to 0.3146 and
-from recall 0.1350 to 0.2364. Neither the wrapper Neural Network nor the other
-reduced configurations exceed the full-feature Neural Network in F1 or
-balanced accuracy.
+The RIPPER wrapper leads all reduced configurations in F1 (0.3996) and balanced
+accuracy (0.6557), selecting a mean of 2.6 original predictors per outer fold.
+Under the tree-based wrapper, Neural Network has the highest F1 (0.3919), while
+K-NN improves from 0.2115 to 0.3146 relative to its all-feature F1. None of
+these configurations exceeds the full-feature Neural Network.
 
+\subsubsection{Comparison Across Strategies}
 
-The RIPPER wrapper obtains F1 0.3996 and balanced accuracy
-0.6557, leading the reduced configurations. It retains a mean of 2.6 original
-predictors (range two to three) across outer folds. This differs from the
-15 transformed components selected by the tree wrapper. It improves RIPPER's
-all-feature F1 without exceeding the full-feature Neural Network.
-
-\subsubsection{Overall Comparison}
-
-Table~\ref{tab:best} lists the highest-F1 configuration within each strategy.
-Figure~\ref{fig:f1} shows all 20 F1 comparisons. Among reduced configurations,
-the RIPPER wrapper has the highest F1 (0.3996) and balanced accuracy (0.6557).
-K-NN, Decision Tree, SVM and Neural Network retain 15 of 51 transformed features
-under selection, a 70.59\% reduction; RIPPER counts use the units described above.
+Table~\ref{tab:pa1-all} reports the ten-fold means for all 20 configurations;
+Figure~\ref{fig:f1} shows the F1 pattern. The full-feature Neural Network
+remains ahead of the best reduced configuration, the RIPPER wrapper.
+K-NN, Decision Tree, SVM and Neural Network retain 15 of 51 transformed columns
+under selection, a 70.59\% reduction. The corresponding RIPPER wrapper count
+is measured in original predictors.
 
 \begin{table}[htbp]
     \centering
-    \caption{PA1 highest mean F1 configuration per strategy. BA denotes balanced
-    accuracy; all metrics are ten-fold means.}
-    \label{tab:best}
+    \caption[PA1 performance across four strategies and five classifiers]{PA1 performance across four feature-selection strategies and five
+    classifiers. Entries are ten-fold means; BA denotes balanced accuracy.
+    Bold indicates the highest F1 within each strategy.}
+    \label{tab:pa1-all}
     \small
-    \setlength{\tabcolsep}{4pt}
-
-    \resizebox{\textwidth}{!}{
-        \input{tables/best_per_experiment}
-    }
+    \input{tables/pa1_full_comparison}
 \end{table}
 
 \begin{figure}[htbp]
@@ -79,7 +68,7 @@ strategies choose different categories of that variable.
 
 \begin{table}[htbp]
     \centering
-    \caption{Agreement between descriptive full-data selections at
+    \caption[PA1 original-variable agreement across selectors]{Agreement between descriptive full-data selections at
     original-variable level. U: univariate; M: multivariate; W: wrapper.}
     \label{tab:variables}
     \small
@@ -87,47 +76,90 @@ strategies choose different categories of that variable.
     \input{tables/selected_variables}
 \end{table}
 \subsection{PA2: Probabilistic Classification}
-\subsubsection{All Valid Predictors}
-Full-feature Logistic Regression obtains the highest F1 among individual probabilistic baselines (0.5373), with accuracy 0.8823, precision 0.7344, recall 0.4259 and specificity 0.9700. It also provides the highest PA2 AUC (0.8375), with Brier 0.1857. Mixed Naive Bayes has the highest recall of all PA2 configurations (0.6453), but lower precision (0.4208), F1 (0.5083), AUC (0.7851) and poorer probability quality (Brier 0.2902). LDA obtains F1 0.4256 and AUC 0.8146; QDA obtains F1 0.3946 and AUC 0.7211.
+\subsubsection{All Features}
+Full-feature Logistic Regression has the highest F1 among the standard PA2
+classifiers (0.5373) and the highest AUC (0.8375). Mixed Naive Bayes has the
+highest recall of all PA2 configurations (0.6453), alongside lower precision
+and a larger Brier score. Table~\ref{tab:pa2-all} gives the exact metrics for
+all four classifiers under each strategy.
 
 \subsubsection{Univariate Filter}
-Mixed Naive Bayes has the highest F1 within this strategy (0.4600), with recall 0.6033. QDA improves from baseline F1 0.3946 to 0.4240, recall 0.3755 to 0.3924, and AUC 0.7211 to 0.7302, while Brier decreases from 0.2786 to 0.2628. Logistic Regression deteriorates substantially: F1 falls from 0.5373 to 0.3736 and recall from 0.4259 to 0.2708. Thirteen original predictors are retained in all ten folds, including overtime, job level, stock-option level, company tenure, age and monthly income.
+Mixed Naive Bayes leads this strategy in F1 (0.4600) and maintains relatively
+high recall (0.6033). QDA improves over its all-feature F1, whereas Logistic
+Regression declines. Thirteen original predictors recur in all ten folds,
+including overtime, job level and company tenure.
 
 \subsubsection{Multivariate Filter}
-CFS selects between 3 and 11 original variables per fold (mean 7.8); the separate descriptive full-data fit retains nine. \texttt{JobLevel}, \texttt{OverTime} and \texttt{StockOptionLevel} appear in all ten fold-level subsets, and \texttt{YearsAtCompany} in nine. Mixed Naive Bayes obtains the highest F1 within this strategy (0.3962), with recall 0.3531. The compact subsets therefore lose predictive performance relative to the strongest complete-feature baseline, although its Brier improves from 0.2902 to 0.2386.
+CFS selects 3--11 original variables per fold (mean 7.8). Job level, overtime
+and stock-option level appear in all ten subsets.
+Mixed Naive Bayes leads this strategy in F1 (0.3962), below its all-feature
+result, while its Brier improves.
 
 \subsubsection{Wrapper}
-Logistic Regression obtains the highest F1 among all reduced-feature PA2 configurations (0.4696), with AUC 0.8206 and Brier 0.1976. Mixed Naive Bayes obtains recall 0.4087 and F1 0.4358; QDA obtains F1 0.3848, AUC 0.7165 and Brier 0.2535. Mean selected original-variable counts are 13.1 for Mixed Naive Bayes, 14.6 for Logistic Regression, 13.5 for LDA and 12.9 for QDA. These classifier-specific searches do not outperform the strongest complete-feature baseline.
+Logistic Regression has the highest reduced-feature PA2 F1 (0.4696). Wrapper
+searches retain roughly 13--15 original predictors on average, depending on
+the classifier, but none exceeds the strongest full-feature baseline.
 
 \subsubsection{Metaclassifiers and Overall Comparison}
-Stacking obtains the highest PA2 F1 (0.5394) and lowest Brier (0.1846). Relative to full-feature Logistic Regression, the F1 improvement is marginal, recall is identical (0.4259), and AUC is slightly lower (0.8365 versus 0.8375). AdaBoost obtains F1 0.4676, recall 0.3380 and AUC 0.8314, but its Brier is 0.3773. Bagging obtains F1 0.3407 and recall 0.2362.
+Stacking obtains the highest PA2 F1 (0.5394) and lowest Brier (0.1846), though
+its F1 advantage over full-feature Logistic Regression is marginal. AdaBoost
+has a competitive AUC but a much larger Brier; Bagging has lower F1 and recall.
 
-Table~\ref{tab:pa2-strategies} summarises the highest-F1 configuration per strategy; Table~\ref{tab:pa2-metrics} identifies the metric-specific leaders. Figure~\ref{fig:pa2-comparison} contrasts F1 with probability-vector error across the evaluated configurations. Rankings use observed cross-validation means and do not establish statistically significant differences.
+Table~\ref{tab:pa2-all} reports all 16 standard-classifier configurations, while
+Table~\ref{tab:pa2-meta} gives the three metaclassifiers. Across both tables,
+full-feature Logistic Regression has the highest AUC and Mixed Naive Bayes
+the highest recall.
+Figures~\ref{fig:pa2-f1} and~\ref{fig:pa2-brier} contrast F1 with
+probability-vector error.
+These rankings use observed cross-validation means and do not establish
+statistically significant differences.
 
 \begin{table}[htbp]
 \centering
-\caption{PA2 highest mean F1 configuration per strategy. All scores are ten-fold means; lower Brier is better.}
-\label{tab:pa2-strategies}
+\caption[PA2 standard-classifier performance by strategy]{PA2 standard-classifier performance by feature-selection strategy.
+Entries are ten-fold means; bold indicates the highest F1 within each strategy.
+AUC is the area under the ROC curve; lower probability-vector Brier is better.}
+\label{tab:pa2-all}
 \small
-\setlength{\tabcolsep}{4pt}
-\resizebox{\textwidth}{!}{\input{tables/pa2_best_per_strategy}}
+\input{tables/pa2_full_comparison}
 \end{table}
 
 \begin{table}[htbp]
 \centering
-\caption{PA2 leading configurations by objective metric.}
-\label{tab:pa2-metrics}
+\caption[PA2 metaclassifier performance]{PA2 metaclassifier performance. Entries are ten-fold means; lower
+probability-vector Brier is better.}
+\label{tab:pa2-meta}
 \small
-\setlength{\tabcolsep}{4pt}
-\input{tables/pa2_best_metrics}
+\input{tables/pa2_metaclassifier_comparison}
+\end{table}
+
+Table~\ref{tab:feature-summary} summarises the dimensionality of each
+strategy's highest-F1 configuration. Reductions use the corresponding
+classifier's full-feature count as the reference; original predictors and
+transformed columns are kept in distinct units.
+
+\begin{table}[htbp]
+\centering
+\caption[Best-F1 models and selected feature counts]{Highest-F1 configuration and dimensionality for each PA1 and PA2
+feature-selection strategy. T: transformed columns; O: original predictors.
+Decimal counts are outer-fold means; reduction is relative to the same
+classifier's full-feature representation.}
+\label{tab:feature-summary}
+\small
+\input{tables/feature_selection_summary}
 \end{table}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.76\linewidth]{../figures/pa2/f1_comparison.pdf}
-\par\medskip
-\includegraphics[width=0.76\linewidth]{../figures/pa2/brier_comparison.pdf}
-\caption{PA2 mean F1 (top) and full class-probability-vector Brier score (bottom). Higher F1 and lower Brier are preferable.}
-\label{fig:pa2-comparison}
+\caption{PA2 mean F1 by classifier and strategy. Higher is better.}
+\label{fig:pa2-f1}
 \end{figure}
-\clearpage
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.76\linewidth]{../figures/pa2/brier_comparison.pdf}
+\caption{PA2 mean full class-probability-vector Brier score by classifier and
+strategy. Lower is better.}
+\label{fig:pa2-brier}
+\end{figure}

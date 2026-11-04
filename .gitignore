@@ -16,6 +16,8 @@ venv/
 *.log
 *.out
 *.toc
+*.lof
+*.lot
 *.synctex.gz
 *.fls
 *.fdb_latexmk
@@ -23,3 +25,6 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local Codex skills
+.agents/skills/scientific-latex-report/

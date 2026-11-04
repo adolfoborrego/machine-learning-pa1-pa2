@@ -1,0 +1,15 @@
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lllrrr@{}}
+\toprule
+Study & Strategy & Highest-F1 model & Selected & Reduction & F1 \\
+\midrule
+PA1 & All Features & Neural Network & 51 T & 0.0\% & 0.4738 \\
+PA1 & Univariate & Decision Tree & 15 T & 70.6\% & 0.3809 \\
+PA1 & Multivariate & Neural Network & 15 T & 70.6\% & 0.3902 \\
+PA1 & Wrapper & RIPPER & 2.6 O & 91.3\% & 0.3996 \\
+\addlinespace[2pt]
+PA2 & All Features & Logistic Regression & 30 O & 0.0\% & 0.5373 \\
+PA2 & Univariate & Mixed Naive Bayes & 15 O & 50.0\% & 0.4600 \\
+PA2 & Multivariate & Mixed Naive Bayes & 7.8 O & 74.0\% & 0.3962 \\
+PA2 & Wrapper & Logistic Regression & 14.6 O & 51.3\% & 0.4696 \\
+\bottomrule
+\end{tabular*}

@@ -1,5 +1,16 @@
 \begin{thebibliography}{1}
 
+\bibitem{cohenripper}
+William~W. Cohen.
+\newblock Fast effective rule induction.
+\newblock In {\em Proceedings of the Twelfth International Conference on
+  Machine Learning}, pages 115--123, 1995.
+
+\bibitem{hallcfs}
+Mark~A. Hall.
+\newblock {\em Correlation-based Feature Selection for Machine Learning}.
+\newblock PhD thesis, University of Waikato, 1999.
+
 \bibitem{ibmhr}
 {IBM HR Analytics Employee Attrition \& Performance}.
 \newblock Kaggle dataset page,
