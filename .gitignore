@@ -27,4 +27,6 @@ venv/
 Thumbs.db
 
 # Local Codex skills
-.agents/skills/scientific-latex-report/
+.agents/
+
+presentation/
